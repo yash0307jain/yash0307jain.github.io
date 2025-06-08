@@ -1,61 +1,270 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    line-height: 1.6;
+    font-family: "Fira Code", "Inter", sans-serif;
     margin: 0;
     padding: 0;
-    color: #333;
+    background: #f5f7fa;
+    color: #1f1f1f;
+}
+
+strong {
+    font-weight: 700;
+    color: #0a2540;
+}
+
+h3 {
+    /* text-align: center; */
+    font-size: 1.8rem;
+    color: #2c5364;
+    margin-bottom: 1.5rem;
+}
+
+.header-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+    padding: 2rem;
+    color: white;
+    flex-wrap: wrap;
+}
+
+.profile-photo {
+    margin: 1rem auto;
+    text-align: center;
+}
+
+.profile-photo img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+    .header-wrapper {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-photo {
+        margin-bottom: 1rem;
+        margin-right: 0;
+    }
+}
+
+.hero {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+    color: white;
+}
+
+.hero h1 {
+    font-size: 2.2rem;
+    margin: 0.2rem 0;
+}
+
+.hero h2 {
+    margin: 0.3rem 0;
+    font-weight: 400;
+}
+
+.hero .tagline {
+    margin-top: 1rem;
+    font-family: "Fira Code", monospace;
+    line-height: 1.6;
+}
+
+.socials {
+    margin-top: 1rem;
+}
+
+.socials a {
+    display: inline-block;
+    margin: 0.3rem 0.6rem;
+    background: #ffffff22;
+    padding: 0.4rem 0.8rem;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+
+.socials a:hover {
+    background: #ffffff44;
 }
 
 .container {
     max-width: 900px;
     margin: 2rem auto;
+    padding: 0 1rem;
     background: #fff;
-    padding: 2rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-header {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-header h1 {
-    margin-bottom: 0.3rem;
-    font-size: 2.2rem;
-}
-
-header p a {
-    color: #0066cc;
-    text-decoration: none;
-    margin: 0 0.3rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
 }
 
 section {
-    margin-bottom: 2rem;
+    padding: 2rem;
+    border-bottom: 1px solid #eee;
 }
 
-h2 {
-    color: #222;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
+h3 {
+    margin-top: 0;
+    color: #2c3e50;
 }
 
-.job h3 {
-    margin: 0.5rem 0 0;
+/* --- Experience Styling --- */
+.company-block {
+    margin-bottom: 1.8rem;
+    padding-left: 1rem;
+    border-left: 4px solid #2c5364;
+    background: #f9f9f9;
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-.job .date {
-    font-style: italic;
-    color: #777;
+.company-block h4 {
+    font-size: 1.2rem;
+    color: #0a2540;
+    margin-bottom: 0.2rem;
+    margin-top: 0.5rem;
+}
+
+.role {
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
     margin-bottom: 0.5rem;
+    color: #2c3e50;
+    background-color: #f0f4f8;
+    padding: 0.5rem 0.8rem;
+    /* border-left: 4px solid #2c5364; */
+    border-radius: 10px;
 }
 
-ul {
+.date {
+    font-weight: 400;
+    color: #777;
+}
+
+.location {
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: #888;
+    margin-left: 0.5rem;
+}
+
+/* --- Skills --- */
+.skills-section {
+    padding: 2rem;
+    background-color: #fff;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.skill-box {
+    background: linear-gradient(145deg, #ffffff, #f0f4f8);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.1),
+        -6px -6px 15px rgba(255, 255, 255, 0.7);
+    transition: transform 0.3s ease;
+}
+
+.skill-box:hover {
+    transform: translateY(-5px);
+}
+
+.skill-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #1f1f1f;
+    border-left: 5px solid #3f51b5;
+    padding-left: 0.8rem;
+    margin-bottom: 0.8rem;
+}
+
+.skill-items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-items span {
+    align-self: flex-start;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    font-size: 0.85rem;
+    padding: 6px 12px;
+    border-radius: 18px;
+    box-shadow: 0 4px 8px rgba(32, 58, 67, 0.3);
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.skill-items span:hover {
+    background: linear-gradient(135deg, #2c5364, #203a43, #0f2027);
+    transform: scale(1.05);
+}
+
+/* --- Projects, Education, Awards (Common Card Style) --- */
+section ul,
+section p {
+    font-family: "Fira Code", monospace;
+}
+
+section ul {
+    padding-left: 0;
+    margin-left: 0;
+    list-style-type: none; /* ✅ Removes bullets */
+}
+
+section ul li {
+    background: #f8f9fb;
+    padding: 0.5rem 0.8rem;
+    margin: 0.5rem 0;
+    border-left: 4px solid #2c5364;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+section p {
+    background: #f8f9fb;
+    padding: 0.6rem 1rem;
+    border-left: 4px solid #2c5364;
+    border-radius: 4px;
+    margin-bottom: 0.8rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* ✅ Override for Experience section: use standard bullets */
+.experience-section ul {
+    list-style-type: disc;
     padding-left: 1.5rem;
+    margin-left: 0;
 }
 
-.skills li {
-    margin: 0.3rem 0;
+.experience-section ul li {
+    background: none;
+    padding: 0.2rem 0;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.85rem;
+    color: #777;
 }
