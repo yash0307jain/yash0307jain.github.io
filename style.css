@@ -49,18 +49,24 @@ h3 {
 
 /* Social links */
 .socials a {
-    display: inline-block;
-    margin: 0.3rem 0.6rem;
-    background: #ffffff22;
+    display: inline-flex; /* better alignment */
+    align-items: center; /* vertically aligns icons with text */
+    justify-content: center;
+    gap: 6px; /* adds gentle spacing between icon & text */
     padding: 0.4rem 0.8rem;
-    border-radius: 5px;
+    background-color: #ffffff22;
     color: white;
+    border-radius: 5px;
     text-decoration: none;
-    transition: background 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 .socials a:hover {
-    background: #ffffff44;
+    background-color: #ffffff44;
+}
+
+.socials a i {
+    font-size: 1rem; /* icon size clearly adjustable if needed */
 }
 
 /* Container (Main Content Wrapper) */
