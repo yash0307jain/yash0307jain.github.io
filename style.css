@@ -49,16 +49,19 @@ h3 {
 
 /* Social links */
 .socials a {
-    display: inline-flex; /* better alignment */
-    align-items: center; /* vertically aligns icons with text */
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    gap: 6px; /* adds gentle spacing between icon & text */
+    gap: 6px;
     padding: 0.4rem 0.8rem;
     background-color: #ffffff22;
     color: white;
     border-radius: 5px;
     text-decoration: none;
     transition: background-color 0.3s ease;
+
+    /* Add spacing between social buttons */
+    margin: 0.4rem 0.6rem;
 }
 
 .socials a:hover {
