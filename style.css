@@ -19,6 +19,53 @@ h3 {
     margin: 0 0 1.5rem;
 }
 
+/* Initial small compact header clearly hidden until scroll */
+.compact-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* clearly added */
+    gap: 0.7rem;
+    background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    padding: 0.6rem 1rem;
+    transform: translateY(-100%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    text-align: center; /* clearly added */
+}
+
+.compact-header.show {
+    transform: translateY(0); /* ⚠️ Clearly show on scroll */
+}
+
+.compact-photo {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.compact-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.compact-name {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.compact-role {
+    font-size: 0.75rem;
+    opacity: 0.9;
+}
+
 /* Hero & Header Section */
 .header-wrapper,
 .hero {
