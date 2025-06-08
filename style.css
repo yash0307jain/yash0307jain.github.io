@@ -1,3 +1,4 @@
+/* Global Styles */
 body {
     font-family: "Fira Code", "Inter", sans-serif;
     margin: 0;
@@ -12,25 +13,19 @@ strong {
 }
 
 h3 {
-    /* text-align: center; */
+    text-align: center;
     font-size: 1.8rem;
     color: #2c5364;
-    margin-bottom: 1.5rem;
+    margin: 0 0 1.5rem;
 }
 
-.header-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
-    padding: 2rem;
-    color: white;
-    flex-wrap: wrap;
-}
-
-.profile-photo {
-    margin: 1rem auto;
+/* Hero & Header Section */
+.header-wrapper,
+.hero {
     text-align: center;
+    padding: 2rem;
+    background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+    color: white;
 }
 
 .profile-photo img {
@@ -42,45 +37,17 @@ h3 {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
-@media (max-width: 768px) {
-    .header-wrapper {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .profile-photo {
-        margin-bottom: 1rem;
-        margin-right: 0;
-    }
-}
-
-.hero {
-    text-align: center;
-    padding: 2rem;
-    background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
-    color: white;
-}
-
 .hero h1 {
     font-size: 2.2rem;
     margin: 0.2rem 0;
 }
 
 .hero h2 {
-    margin: 0.3rem 0;
     font-weight: 400;
+    margin: 0.3rem 0;
 }
 
-.hero .tagline {
-    margin-top: 1rem;
-    font-family: "Fira Code", monospace;
-    line-height: 1.6;
-}
-
-.socials {
-    margin-top: 1rem;
-}
-
+/* Social links */
 .socials a {
     display: inline-block;
     margin: 0.3rem 0.6rem;
@@ -89,7 +56,6 @@ h3 {
     border-radius: 5px;
     color: white;
     text-decoration: none;
-    font-weight: 500;
     transition: background 0.3s ease;
 }
 
@@ -97,6 +63,7 @@ h3 {
     background: #ffffff44;
 }
 
+/* Container (Main Content Wrapper) */
 .container {
     max-width: 900px;
     margin: 2rem auto;
@@ -106,17 +73,13 @@ h3 {
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
 }
 
+/* Sections */
 section {
     padding: 2rem;
     border-bottom: 1px solid #eee;
 }
 
-h3 {
-    margin-top: 0;
-    color: #2c3e50;
-}
-
-/* --- Experience Styling --- */
+/* Experience Section */
 .company-block {
     margin-bottom: 1.8rem;
     padding-left: 1rem;
@@ -124,13 +87,18 @@ h3 {
     background: #f9f9f9;
     border-radius: 6px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.company-block:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(44, 83, 100, 0.2);
 }
 
 .company-block h4 {
     font-size: 1.2rem;
     color: #0a2540;
-    margin-bottom: 0.2rem;
-    margin-top: 0.5rem;
+    margin: 0.5rem 0 0.2rem;
 }
 
 .role {
@@ -142,26 +110,23 @@ h3 {
     color: #2c3e50;
     background-color: #f0f4f8;
     padding: 0.5rem 0.8rem;
-    /* border-left: 4px solid #2c5364; */
     border-radius: 10px;
 }
 
 .date {
-    font-weight: 400;
     color: #777;
-}
-
-.location {
     font-weight: 400;
-    font-size: 0.9rem;
+}
+.location {
     color: #888;
+    font-size: 0.9rem;
     margin-left: 0.5rem;
 }
 
-/* --- Skills --- */
+/* Skills Section (Specific Hover Effect) */
 .skills-section {
     padding: 2rem;
-    background-color: #fff;
+    background: #fff;
 }
 
 .skills-grid {
@@ -194,77 +159,92 @@ h3 {
 
 .skill-items {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     gap: 10px;
 }
 
 .skill-items span {
-    align-self: flex-start;
     background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
     color: white;
     font-size: 0.85rem;
     padding: 6px 12px;
     border-radius: 18px;
     box-shadow: 0 4px 8px rgba(32, 58, 67, 0.3);
-    transition: all 0.3s ease;
     cursor: default;
+    transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .skill-items span:hover {
-    background: linear-gradient(135deg, #2c5364, #203a43, #0f2027);
     transform: scale(1.05);
+    background: linear-gradient(135deg, #2c5364, #203a43, #0f2027);
 }
 
-/* --- Projects, Education, Awards (Common Card Style) --- */
-section ul,
-section p {
-    font-family: "Fira Code", monospace;
-}
-
-section ul {
-    padding-left: 0;
-    margin-left: 0;
-    list-style-type: none; /* ✅ Removes bullets */
-}
-
-section ul li {
+/* Reusable Cards (Projects, Education, Awards) */
+.projects-section ul li,
+.education-section ul li,
+.awards-section ul li {
     background: #f8f9fb;
-    padding: 0.5rem 0.8rem;
+    padding: 0.6rem 1rem;
     margin: 0.5rem 0;
     border-left: 4px solid #2c5364;
     border-radius: 4px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-section p {
-    background: #f8f9fb;
-    padding: 0.6rem 1rem;
-    border-left: 4px solid #2c5364;
-    border-radius: 4px;
-    margin-bottom: 0.8rem;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+.projects-section ul li:hover,
+.education-section ul li:hover,
+.awards-section ul li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(44, 83, 100, 0.2);
 }
 
-/* ✅ Override for Experience section: use standard bullets */
+/* List Styling Override for Experience */
 .experience-section ul {
     list-style-type: disc;
     padding-left: 1.5rem;
-    margin-left: 0;
 }
 
 .experience-section ul li {
     background: none;
     padding: 0.2rem 0;
-    margin: 0;
-    border: none;
     box-shadow: none;
 }
 
-/* --- Footer --- */
+section ul {
+    padding-left: 0;
+    margin-left: 0;
+    font-size: 0.9rem;
+    list-style-type: none; /* ✅ Removes bullets */
+}
+
+/* Footer */
 footer {
     text-align: center;
     padding: 1.5rem;
     font-size: 0.85rem;
     color: #777;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .header-wrapper,
+    .hero {
+        flex-direction: column;
+        padding: 1.5rem;
+    }
+
+    .skills-grid,
+    .container {
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .skill-box {
+        padding: 1rem;
+    }
+
+    .skill-title {
+        font-size: 1rem;
+    }
 }
