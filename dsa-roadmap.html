@@ -49,7 +49,7 @@
             href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Inter:wght@400;600;700&display=swap"
             rel="stylesheet"
         />
-        <title>DSA Learning Roadmap - Hard to Easy</title>
+        <title>DSA Learning Roadmap - Dual View</title>
         <style>
             body {
                 font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -97,6 +97,33 @@
                 padding: 20px;
                 background: #f8f9fa;
                 border-bottom: 1px solid #e9ecef;
+            }
+
+            .view-toggle {
+                display: flex;
+                gap: 10px;
+                margin-bottom: 20px;
+                justify-content: center;
+            }
+
+            .view-btn {
+                padding: 12px 24px;
+                border: 2px solid #3498db;
+                background: white;
+                color: #3498db;
+                border-radius: 25px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-size: 16px;
+                font-weight: 600;
+            }
+
+            .view-btn:hover,
+            .view-btn.active {
+                background: #3498db;
+                color: white;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
             }
 
             .search-box {
@@ -250,6 +277,25 @@
                 box-shadow: 0 8px 25px rgba(52, 152, 219, 0.6);
             }
 
+            .view-description {
+                background: #e8f4f8;
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                border-left: 4px solid #3498db;
+            }
+
+            .view-description h3 {
+                margin: 0 0 10px 0;
+                color: #2c3e50;
+            }
+
+            .view-description p {
+                margin: 0;
+                color: #555;
+                font-size: 14px;
+            }
+
             /* Mobile responsiveness fixes */
             @media (max-width: 768px) {
                 .table-container {
@@ -259,7 +305,7 @@
                 }
 
                 table {
-                    min-width: 800px; /* Ensures table doesn't get too compressed */
+                    min-width: 800px;
                     font-size: 11px;
                 }
 
@@ -295,6 +341,11 @@
                     padding: 6px 12px;
                     font-size: 12px;
                 }
+
+                .view-btn {
+                    padding: 10px 20px;
+                    font-size: 14px;
+                }
             }
 
             /* Even smaller screens */
@@ -327,6 +378,11 @@
                     padding: 12px 20px;
                     font-size: 14px;
                 }
+
+                .view-toggle {
+                    flex-direction: column;
+                    gap: 5px;
+                }
             }
         </style>
     </head>
@@ -335,12 +391,32 @@
             <div class="header">
                 <h1>🚀 DSA Learning Roadmap</h1>
                 <p>
-                    Comprehensive Data Structures & Algorithms Guide - From
-                    Expert to Beginner
+                    Comprehensive Data Structures & Algorithms Guide - Dual View
+                    Format
                 </p>
             </div>
 
             <div class="controls">
+                <div class="view-toggle">
+                    <button
+                        class="view-btn active"
+                        onclick="switchView('detailed')"
+                    >
+                        📊 Detailed View
+                    </button>
+                    <button class="view-btn" onclick="switchView('simplified')">
+                        📋 Simplified View
+                    </button>
+                </div>
+
+                <div class="view-description" id="viewDescription">
+                    <h3>📊 Detailed View</h3>
+                    <p>
+                        Comprehensive breakdown of all DSA topics with specific
+                        priorities, dependencies, and detailed learning paths.
+                    </p>
+                </div>
+
                 <input
                     type="text"
                     class="search-box"
@@ -383,7 +459,7 @@
 
             <div class="table-container">
                 <table id="roadmapTable">
-                    <thead>
+                    <thead id="tableHead">
                         <tr>
                             <th>Priority</th>
                             <th>Topic</th>
@@ -402,13 +478,13 @@
             </div>
         </div>
 
-        <button class="download-btn" onclick="downloadCSV()">
-            📥 Download CSV
+        <button class="download-btn" onclick="downloadExcel()">
+            📥 Download Excel
         </button>
 
         <script>
-            const roadmapData = [
-                // Expert Level (Most Complex)
+            // TODO: Paste the detailed roadmap data here (pasteContentList from JSON)
+            const detailedRoadmapData = [
                 {
                     priority: 1,
                     topic: "Heavy-Light Decomposition (HLD)",
@@ -466,8 +542,6 @@
                     interviewFreq: "Rare",
                     timeToMaster: "2-3 weeks",
                 },
-
-                // Hard Level
                 {
                     priority: 6,
                     topic: "Segment Trees",
@@ -548,8 +622,6 @@
                     interviewFreq: "Medium",
                     timeToMaster: "1-2 weeks",
                 },
-
-                // Medium Level
                 {
                     priority: 13,
                     topic: "Shortest Path Algorithms",
@@ -699,8 +771,6 @@
                     interviewFreq: "High",
                     timeToMaster: "1-2 weeks",
                 },
-
-                // Easy Level
                 {
                     priority: 26,
                     topic: "Binary Trees & BST",
@@ -855,7 +925,230 @@
                 },
             ];
 
-            let filteredData = [...roadmapData];
+            // TODO: Paste the simplified roadmap data here (csvContentList from JSON)
+            const simplifiedRoadmapData = [
+                {
+                    priority: 1,
+                    topic: "Sorting Algorithms",
+                    category: "Sorting",
+                    difficulty: "easy",
+                    keyConcepts:
+                        "Bubble, Selection, Insertion, Merge Sort, Quick Sort, Counting Sort, Radix Sort, Top-K using Heap",
+                    dependencies: "Arrays, Comparisons, Recursion",
+                    interviewFreq: "High",
+                    timeToMaster: "2-3 weeks",
+                },
+                {
+                    priority: 2,
+                    topic: "Arrays & Strings",
+                    category: "Fundamental Data Structures",
+                    difficulty: "easy",
+                    keyConcepts:
+                        "Traversal, Searching, Sorting, Prefix Sum, Sliding Window, Two Pointers, Kadane's Algorithm, String Manipulation, Character Frequency Counting",
+                    dependencies: "None - Fundamental concept",
+                    interviewFreq: "Very High",
+                    timeToMaster: "2-3 weeks",
+                },
+                {
+                    priority: 3,
+                    topic: "Linked Lists",
+                    category: "Data Structures",
+                    difficulty: "easy",
+                    keyConcepts:
+                        "Singly & Doubly Linked List, Reverse LL, Detect & Remove Cycle, Merge K Sorted Lists, Linked List as Stack/Queue",
+                    dependencies: "Pointers/References, Memory concepts",
+                    interviewFreq: "Very High",
+                    timeToMaster: "2-3 weeks",
+                },
+                {
+                    priority: 4,
+                    topic: "Stacks & Queues",
+                    category: "Data Structures",
+                    difficulty: "easy",
+                    keyConcepts:
+                        "Infix/Postfix/Prefix Evaluation, Min Stack, Monotonic Stack, Circular Queue, Deque, Stack/Queue using LL",
+                    dependencies: "Arrays, Linked Lists, Basic operations",
+                    interviewFreq: "High",
+                    timeToMaster: "1-2 weeks",
+                },
+                {
+                    priority: 5,
+                    topic: "Hashing & Sets",
+                    category: "Hashing",
+                    difficulty: "easy",
+                    keyConcepts:
+                        "HashMap/HashSet, Count Frequency, Group Anagrams, Subarrays with Given Sum, Custom Hashing",
+                    dependencies:
+                        "Arrays, Basic data structures, Key-value concepts",
+                    interviewFreq: "Very High",
+                    timeToMaster: "1-2 weeks",
+                },
+                {
+                    priority: 6,
+                    topic: "Trees",
+                    category: "Trees",
+                    difficulty: "easy",
+                    keyConcepts:
+                        "Binary Tree & BST, Tree Traversals, Level Order, LCA, Diameter/Height, Serialize/Deserialize",
+                    dependencies:
+                        "Recursion, Pointers/References, Basic tree concepts",
+                    interviewFreq: "Very High",
+                    timeToMaster: "2-3 weeks",
+                },
+                {
+                    priority: 7,
+                    topic: "Tries (Prefix Tree)",
+                    category: "Trees",
+                    difficulty: "medium",
+                    keyConcepts:
+                        "Insert/Search/StartsWith, Word Search II, Auto-complete, Count Prefixes",
+                    dependencies: "Trees, Strings, Recursion",
+                    interviewFreq: "Medium",
+                    timeToMaster: "1-2 weeks",
+                },
+                {
+                    priority: 8,
+                    topic: "Heaps / Priority Queues",
+                    category: "Data Structures",
+                    difficulty: "medium",
+                    keyConcepts:
+                        "Min/Max Heap, Heapify, K Largest/Smallest, Median from Stream, Merge K Sorted Arrays",
+                    dependencies: "Arrays, Complete binary trees, Comparisons",
+                    interviewFreq: "High",
+                    timeToMaster: "1-2 weeks",
+                },
+                {
+                    priority: 9,
+                    topic: "Graphs",
+                    category: "Graphs",
+                    difficulty: "medium",
+                    keyConcepts:
+                        "Adjacency List/Matrix, DFS & BFS, Connected Components, Cycle Detection, Topological Sort, Shortest Paths, Union-Find, MST, Bridges, Bipartite Check",
+                    dependencies:
+                        "Arrays, Lists, Basic data structures, Recursion",
+                    interviewFreq: "Very High",
+                    timeToMaster: "4-5 weeks",
+                },
+                {
+                    priority: 10,
+                    topic: "Greedy",
+                    category: "Greedy",
+                    difficulty: "medium",
+                    keyConcepts:
+                        "Activity Selection, Fractional Knapsack, Huffman Encoding, Interval Scheduling, Gas Station, Jump Game, Greedy on Sorting",
+                    dependencies:
+                        "Sorting, Problem-solving patterns, Optimization concepts",
+                    interviewFreq: "High",
+                    timeToMaster: "2-3 weeks",
+                },
+                {
+                    priority: 11,
+                    topic: "Dynamic Programming",
+                    category: "Dynamic Programming",
+                    difficulty: "medium",
+                    keyConcepts:
+                        "0/1 Knapsack, Subset Sum, LCS, LIS, Matrix Chain, Edit Distance, DP on Trees/Grids/Strings, Bitmask DP",
+                    dependencies: "Recursion, Arrays, Problem-solving patterns",
+                    interviewFreq: "Very High",
+                    timeToMaster: "4-6 weeks",
+                },
+                {
+                    priority: 12,
+                    topic: "Bit Manipulation",
+                    category: "Bit Manipulation",
+                    difficulty: "medium",
+                    keyConcepts:
+                        "XOR, AND, OR, Count Set Bits, Power of Two, Subsets Generation, Single Number, Bitmasking in DP",
+                    dependencies:
+                        "Binary representation, Basic mathematical operations",
+                    interviewFreq: "Medium",
+                    timeToMaster: "1-2 weeks",
+                },
+                {
+                    priority: 13,
+                    topic: "Searching Algorithms",
+                    category: "Searching",
+                    difficulty: "medium",
+                    keyConcepts:
+                        "Binary Search, Binary Search on Answer, Ternary Search, Exponential Search, Search in Rotated Array",
+                    dependencies:
+                        "Sorted arrays, Mathematical analysis, Loop invariants",
+                    interviewFreq: "Very High",
+                    timeToMaster: "2-3 weeks",
+                },
+                {
+                    priority: 14,
+                    topic: "Recursion & Backtracking",
+                    category: "Recursion & Backtracking",
+                    difficulty: "medium",
+                    keyConcepts:
+                        "Permutations & Combinations, N-Queens, Sudoku Solver, Subset Generation, Word Search, Recursive Tree/Graph Problems",
+                    dependencies: "Recursion, Arrays, Basic problem-solving",
+                    interviewFreq: "High",
+                    timeToMaster: "2-3 weeks",
+                },
+                {
+                    priority: 15,
+                    topic: "Pattern-Based Categorization",
+                    category: "Problem-Solving Patterns",
+                    difficulty: "medium",
+                    keyConcepts:
+                        "Sliding Window, Two Pointers, Fast & Slow Pointers, Merge Intervals, Topological Sort, Binary Search, Backtracking, DP, Greedy, Graph Traversals, Tree Traversals, Heap/Priority Queue patterns",
+                    dependencies: "All fundamental topics",
+                    interviewFreq: "Very High",
+                    timeToMaster: "2-3 weeks",
+                },
+                {
+                    priority: 16,
+                    topic: "Advanced Topics",
+                    category: "Advanced Data Structures & Algorithms",
+                    difficulty: "expert",
+                    keyConcepts:
+                        "Segment Trees, Fenwick Tree, Suffix Arrays, Line Sweep, Heavy-Light Decomposition, Mo's Algorithm, KMP, Rabin-Karp, Rolling Hash, Convex Hull",
+                    dependencies: "Strong foundation in all basic topics",
+                    interviewFreq: "Rare",
+                    timeToMaster: "6-8 weeks",
+                },
+            ];
+
+            let currentView = "detailed";
+            let currentData = detailedRoadmapData;
+            let filteredData = [...currentData];
+
+            function switchView(viewType) {
+                // Update button states
+                document
+                    .querySelectorAll(".view-btn")
+                    .forEach((btn) => btn.classList.remove("active"));
+                event.target.classList.add("active");
+
+                currentView = viewType;
+
+                // Update data source
+                if (viewType === "detailed") {
+                    currentData = detailedRoadmapData;
+                    document.getElementById("viewDescription").innerHTML = `
+                        <h3>📊 Detailed View</h3>
+                        <p>Comprehensive breakdown of all DSA topics with specific priorities, dependencies, and detailed learning paths.</p>
+                    `;
+                } else {
+                    currentData = simplifiedRoadmapData;
+                    document.getElementById("viewDescription").innerHTML = `
+                        <h3>📋 Simplified View</h3>
+                        <p>Condensed overview of major DSA categories with broader topic groupings and consolidated learning approach.</p>
+                    `;
+                }
+
+                // Reset filters and search
+                filteredData = [...currentData];
+                document.getElementById("searchInput").value = "";
+                document
+                    .querySelectorAll(".filter-btn")
+                    .forEach((btn) => btn.classList.remove("active"));
+                document.querySelector(".filter-btn").classList.add("active");
+
+                renderTable();
+            }
 
             function renderTable() {
                 const tableBody = document.getElementById("tableBody");
@@ -889,9 +1182,9 @@
                 event.target.classList.add("active");
 
                 if (difficulty === "all") {
-                    filteredData = [...roadmapData];
+                    filteredData = [...currentData];
                 } else {
-                    filteredData = roadmapData.filter(
+                    filteredData = currentData.filter(
                         (item) => item.difficulty === difficulty
                     );
                 }
@@ -902,7 +1195,7 @@
                 const searchInput = document.getElementById("searchInput");
                 searchInput.addEventListener("input", function () {
                     const searchTerm = this.value.toLowerCase();
-                    filteredData = roadmapData.filter(
+                    filteredData = currentData.filter(
                         (item) =>
                             item.topic.toLowerCase().includes(searchTerm) ||
                             item.category.toLowerCase().includes(searchTerm) ||
@@ -915,38 +1208,54 @@
                 });
             }
 
-            function downloadCSV() {
-                const csvContent = [
-                    [
-                        "Priority",
-                        "Topic",
-                        "Category",
-                        "Difficulty",
-                        "Key Concepts",
-                        "Dependencies",
-                        "Interview Frequency",
-                        "Time to Master",
-                    ],
-                    ...roadmapData.map((item) => [
-                        item.priority,
-                        item.topic,
-                        item.category,
-                        item.difficulty,
-                        item.keyConcepts,
-                        item.dependencies,
-                        item.interviewFreq,
-                        item.timeToMaster,
-                    ]),
-                ]
-                    .map((row) => row.join(","))
-                    .join("\n");
+            function downloadExcel() {
+                const viewLabel =
+                    currentView === "detailed" ? "Detailed" : "Simplified";
+                let tableHTML = `
+                <table border='1'>
+                    <thead>
+                        <tr>
+                            <th>Priority</th>
+                            <th>Topic</th>
+                            <th>Category</th>
+                            <th>Difficulty</th>
+                            <th>Key Concepts</th>
+                            <th>Dependencies</th>
+                            <th>Interview Frequency</th>
+                            <th>Time to Master</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${currentData
+                            .map(
+                                (item) => `
+                            <tr>
+                                <td>${item.priority}</td>
+                                <td>${item.topic}</td>
+                                <td>${item.category}</td>
+                                <td>${item.difficulty}</td>
+                                <td>${item.keyConcepts}</td>
+                                <td>${item.dependencies}</td>
+                                <td>${item.interviewFreq}</td>
+                                <td>${item.timeToMaster}</td>
+                            </tr>
+                        `
+                            )
+                            .join("")}
+                    </tbody>
+                </table>`;
 
-                const blob = new Blob([csvContent], { type: "text/csv" });
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement("a");
+                let blob = new Blob([tableHTML], {
+                    type: "application/vnd.ms-excel",
+                });
+
+                let url = window.URL.createObjectURL(blob);
+                let a = document.createElement("a");
                 a.href = url;
-                a.download = "dsa_roadmap_hard_to_easy.csv";
+                a.download = `dsa_roadmap_${viewLabel.toLowerCase()}_view.xls`;
+                document.body.appendChild(a);
                 a.click();
+                document.body.removeChild(a);
                 window.URL.revokeObjectURL(url);
             }
 
