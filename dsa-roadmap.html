@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>DSA Learning Roadmap - Hard to Easy</title>
+        <style>
+            body {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                margin: 0;
+                padding: 20px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: #333;
+            }
+
+            .container {
+                max-width: 1400px;
+                margin: 0 auto;
+                background: white;
+                border-radius: 15px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+            }
+
+            .header {
+                background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+                color: white;
+                padding: 30px;
+                text-align: center;
+            }
+
+            .header h1 {
+                margin: 0;
+                font-size: 2.5em;
+                font-weight: 700;
+            }
+
+            .header p {
+                margin: 10px 0 0 0;
+                font-size: 1.1em;
+                opacity: 0.9;
+            }
+
+            .controls {
+                padding: 20px;
+                background: #f8f9fa;
+                border-bottom: 1px solid #e9ecef;
+            }
+
+            .search-box {
+                width: 100%;
+                max-width: 400px;
+                padding: 12px 20px;
+                border: 2px solid #ddd;
+                border-radius: 25px;
+                font-size: 16px;
+                transition: all 0.3s ease;
+            }
+
+            .search-box:focus {
+                outline: none;
+                border-color: #3498db;
+                box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+            }
+
+            .filter-buttons {
+                margin-top: 15px;
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+
+            .filter-btn {
+                padding: 8px 16px;
+                border: 2px solid #3498db;
+                background: white;
+                color: #3498db;
+                border-radius: 20px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-size: 14px;
+            }
+
+            .filter-btn:hover,
+            .filter-btn.active {
+                background: #3498db;
+                color: white;
+            }
+
+            .table-container {
+                overflow-x: auto;
+                max-height: 80vh;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 14px;
+            }
+
+            th {
+                background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+                color: white;
+                padding: 15px 12px;
+                text-align: left;
+                font-weight: 600;
+                position: sticky;
+                top: 0;
+                z-index: 10;
+            }
+
+            td {
+                padding: 12px;
+                border-bottom: 1px solid #eee;
+                vertical-align: top;
+            }
+
+            tr:hover {
+                background: #f8f9fa;
+            }
+
+            .difficulty {
+                padding: 6px 12px;
+                border-radius: 15px;
+                font-weight: 600;
+                font-size: 12px;
+                text-align: center;
+                color: white;
+            }
+
+            .expert {
+                background: #e74c3c;
+            }
+            .hard {
+                background: #e67e22;
+            }
+            .medium {
+                background: #f39c12;
+            }
+            .easy {
+                background: #27ae60;
+            }
+
+            .dependencies {
+                font-size: 12px;
+                color: #7f8c8d;
+                font-style: italic;
+            }
+
+            .key-concepts {
+                font-size: 12px;
+                color: #2c3e50;
+                line-height: 1.4;
+            }
+
+            .category {
+                font-weight: 600;
+                color: #2c3e50;
+            }
+
+            .priority {
+                font-weight: 600;
+                text-align: center;
+            }
+
+            .priority-1 {
+                color: #e74c3c;
+            }
+            .priority-2 {
+                color: #e67e22;
+            }
+            .priority-3 {
+                color: #f39c12;
+            }
+            .priority-4 {
+                color: #27ae60;
+            }
+
+            .download-btn {
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                background: #3498db;
+                color: white;
+                border: none;
+                padding: 15px 25px;
+                border-radius: 50px;
+                font-size: 16px;
+                cursor: pointer;
+                box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+                transition: all 0.3s ease;
+                z-index: 1000;
+            }
+
+            .download-btn:hover {
+                background: #2980b9;
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(52, 152, 219, 0.6);
+            }
+
+            @media (max-width: 768px) {
+                .container {
+                    margin: 10px;
+                    border-radius: 10px;
+                }
+
+                .header {
+                    padding: 20px;
+                }
+
+                .header h1 {
+                    font-size: 1.8em;
+                }
+
+                table {
+                    font-size: 12px;
+                }
+
+                th,
+                td {
+                    padding: 8px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>🚀 DSA Learning Roadmap</h1>
+                <p>
+                    Comprehensive Data Structures & Algorithms Guide - From
+                    Expert to Beginner
+                </p>
+            </div>
+
+            <div class="controls">
+                <input
+                    type="text"
+                    class="search-box"
+                    placeholder="🔍 Search topics..."
+                    id="searchInput"
+                />
+                <div class="filter-buttons">
+                    <button
+                        class="filter-btn active"
+                        onclick="filterByDifficulty('all')"
+                    >
+                        All
+                    </button>
+                    <button
+                        class="filter-btn"
+                        onclick="filterByDifficulty('expert')"
+                    >
+                        Expert
+                    </button>
+                    <button
+                        class="filter-btn"
+                        onclick="filterByDifficulty('hard')"
+                    >
+                        Hard
+                    </button>
+                    <button
+                        class="filter-btn"
+                        onclick="filterByDifficulty('medium')"
+                    >
+                        Medium
+                    </button>
+                    <button
+                        class="filter-btn"
+                        onclick="filterByDifficulty('easy')"
+                    >
+                        Easy
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table id="roadmapTable">
+                    <thead>
+                        <tr>
+                            <th>Priority</th>
+                            <th>Topic</th>
+                            <th>Category</th>
+                            <th>Difficulty</th>
+                            <th>Key Concepts</th>
+                            <th>Dependencies</th>
+                            <th>Interview Frequency</th>
+                            <th>Time to Master</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <button class="download-btn" onclick="downloadCSV()">
+            📥 Download CSV
+        </button>
+
+        <script>
+            const roadmapData = [
+                // Expert Level (Most Complex)
+                {
+                    priority: 1,
+                    topic: "Heavy-Light Decomposition (HLD)",
+                    category: "Advanced Trees",
+                    difficulty: "expert",
+                    keyConcepts:
+                        "Tree decomposition, Path queries, LCA optimization, Segment trees integration",
+                    dependencies: "Trees, Segment Trees, DFS, LCA",
+                    interviewFreq: "Rare",
+                    timeToMaster: "3-4 weeks",
+                },
+                {
+                    priority: 2,
+                    topic: "Convex Hull Algorithms",
+                    category: "Computational Geometry",
+                    difficulty: "expert",
+                    keyConcepts:
+                        "Graham scan, Jarvis march, Monotone chain, Cross products",
+                    dependencies:
+                        "Mathematical concepts, Sorting, Coordinate geometry",
+                    interviewFreq: "Very Rare",
+                    timeToMaster: "2-3 weeks",
+                },
+                {
+                    priority: 3,
+                    topic: "Suffix Arrays & LCP Arrays",
+                    category: "Advanced Strings",
+                    difficulty: "expert",
+                    keyConcepts:
+                        "Suffix sorting, LCP computation, String matching, Pattern search",
+                    dependencies: "Strings, Sorting, Arrays",
+                    interviewFreq: "Rare",
+                    timeToMaster: "2-3 weeks",
+                },
+                {
+                    priority: 4,
+                    topic: "Mo's Algorithm",
+                    category: "Query Optimization",
+                    difficulty: "expert",
+                    keyConcepts:
+                        "Square root decomposition, Query ordering, Offline processing",
+                    dependencies: "Arrays, Sorting, Mathematical analysis",
+                    interviewFreq: "Very Rare",
+                    timeToMaster: "2-3 weeks",
+                },
+                {
+                    priority: 5,
+                    topic: "Line Sweep Algorithms",
+                    category: "Computational Geometry",
+                    difficulty: "expert",
+                    keyConcepts:
+                        "Event processing, Coordinate compression, Interval problems",
+                    dependencies:
+                        "Sorting, Priority queues, Coordinate geometry",
+                    interviewFreq: "Rare",
+                    timeToMaster: "2-3 weeks",
+                },
+
+                // Hard Level
+                {
+                    priority: 6,
+                    topic: "Segment Trees",
+                    category: "Advanced Data Structures",
+                    difficulty: "hard",
+                    keyConcepts:
+                        "Range queries, Range updates, Lazy propagation, Build/Update/Query",
+                    dependencies: "Trees, Recursion, Binary operations",
+                    interviewFreq: "Medium",
+                    timeToMaster: "2-3 weeks",
+                },
+                {
+                    priority: 7,
+                    topic: "Fenwick Tree (BIT)",
+                    category: "Advanced Data Structures",
+                    difficulty: "hard",
+                    keyConcepts:
+                        "Binary indexed tree, Prefix sums, Range updates, Bit operations",
+                    dependencies:
+                        "Bit manipulation, Arrays, Mathematical concepts",
+                    interviewFreq: "Medium",
+                    timeToMaster: "1-2 weeks",
+                },
+                {
+                    priority: 8,
+                    topic: "Advanced Dynamic Programming",
+                    category: "Dynamic Programming",
+                    difficulty: "hard",
+                    keyConcepts:
+                        "Bitmask DP, DP on Trees, Matrix chain, Edit distance, Complex states",
+                    dependencies:
+                        "Basic DP, Bit manipulation, Trees, Recursion",
+                    interviewFreq: "Very High",
+                    timeToMaster: "4-6 weeks",
+                },
+                {
+                    priority: 9,
+                    topic: "Network Flow Algorithms",
+                    category: "Advanced Graphs",
+                    difficulty: "hard",
+                    keyConcepts:
+                        "Max flow, Min cut, Ford-Fulkerson, Edmonds-Karp, Bipartite matching",
+                    dependencies: "Graphs, BFS/DFS, Shortest paths",
+                    interviewFreq: "Low",
+                    timeToMaster: "3-4 weeks",
+                },
+                {
+                    priority: 10,
+                    topic: "String Matching Algorithms",
+                    category: "Advanced Strings",
+                    difficulty: "hard",
+                    keyConcepts:
+                        "KMP, Rabin-Karp, Z-algorithm, Rolling hash, Pattern matching",
+                    dependencies: "Strings, Hashing, Mathematical concepts",
+                    interviewFreq: "Medium",
+                    timeToMaster: "2-3 weeks",
+                },
+                {
+                    priority: 11,
+                    topic: "Advanced Graph Algorithms",
+                    category: "Graphs",
+                    difficulty: "hard",
+                    keyConcepts:
+                        "Bridges, Articulation points, Strongly connected components, Tarjan's algorithm",
+                    dependencies: "Basic graphs, DFS, Graph traversals",
+                    interviewFreq: "Medium",
+                    timeToMaster: "2-3 weeks",
+                },
+                {
+                    priority: 12,
+                    topic: "Minimum Spanning Tree",
+                    category: "Graphs",
+                    difficulty: "hard",
+                    keyConcepts:
+                        "Kruskal's algorithm, Prim's algorithm, Union-Find optimization",
+                    dependencies:
+                        "Graphs, Union-Find, Sorting, Greedy algorithms",
+                    interviewFreq: "Medium",
+                    timeToMaster: "1-2 weeks",
+                },
+
+                // Medium Level
+                {
+                    priority: 13,
+                    topic: "Shortest Path Algorithms",
+                    category: "Graphs",
+                    difficulty: "medium",
+                    keyConcepts:
+                        "Dijkstra's, Bellman-Ford, Floyd-Warshall, Single/All pairs shortest path",
+                    dependencies:
+                        "Graphs, Priority queues, Dynamic programming",
+                    interviewFreq: "High",
+                    timeToMaster: "2-3 weeks",
+                },
+                {
+                    priority: 14,
+                    topic: "Topological Sort",
+                    category: "Graphs",
+                    difficulty: "medium",
+                    keyConcepts:
+                        "Kahn's algorithm, DFS-based approach, Cycle detection, Dependency resolution",
+                    dependencies: "Graphs, DFS/BFS, Queue",
+                    interviewFreq: "High",
+                    timeToMaster: "1-2 weeks",
+                },
+                {
+                    priority: 15,
+                    topic: "Union-Find (Disjoint Set)",
+                    category: "Data Structures",
+                    difficulty: "medium",
+                    keyConcepts:
+                        "Path compression, Union by rank, Connected components, Cycle detection",
+                    dependencies: "Trees, Arrays, Basic graph concepts",
+                    interviewFreq: "High",
+                    timeToMaster: "1-2 weeks",
+                },
+                {
+                    priority: 16,
+                    topic: "Basic Dynamic Programming",
+                    category: "Dynamic Programming",
+                    difficulty: "medium",
+                    keyConcepts:
+                        "0/1 Knapsack, LCS, LIS, Subset sum, Coin change, Memoization/Tabulation",
+                    dependencies: "Recursion, Arrays, Problem-solving patterns",
+                    interviewFreq: "Very High",
+                    timeToMaster: "3-4 weeks",
+                },
+                {
+                    priority: 17,
+                    topic: "Advanced Backtracking",
+                    category: "Recursion & Backtracking",
+                    difficulty: "medium",
+                    keyConcepts:
+                        "N-Queens, Sudoku solver, Word search, Constraint satisfaction",
+                    dependencies:
+                        "Basic backtracking, Recursion, Problem-solving",
+                    interviewFreq: "High",
+                    timeToMaster: "2-3 weeks",
+                },
+                {
+                    priority: 18,
+                    topic: "Tries (Prefix Trees)",
+                    category: "Trees",
+                    difficulty: "medium",
+                    keyConcepts:
+                        "Insert/Search/Delete, Word search, Auto-complete, Prefix matching",
+                    dependencies: "Trees, Strings, Recursion",
+                    interviewFreq: "Medium",
+                    timeToMaster: "1-2 weeks",
+                },
+                {
+                    priority: 19,
+                    topic: "Graph Traversals & Applications",
+                    category: "Graphs",
+                    difficulty: "medium",
+                    keyConcepts:
+                        "DFS, BFS, Connected components, Cycle detection, Bipartite check",
+                    dependencies:
+                        "Basic graph representation, Recursion, Queue/Stack",
+                    interviewFreq: "Very High",
+                    timeToMaster: "2-3 weeks",
+                },
+                {
+                    priority: 20,
+                    topic: "Advanced Tree Algorithms",
+                    category: "Trees",
+                    difficulty: "medium",
+                    keyConcepts:
+                        "LCA, Diameter, Serialization, Tree DP, Path sum problems",
+                    dependencies: "Binary trees, Tree traversals, Recursion",
+                    interviewFreq: "High",
+                    timeToMaster: "2-3 weeks",
+                },
+                {
+                    priority: 21,
+                    topic: "Heaps & Priority Queues",
+                    category: "Data Structures",
+                    difficulty: "medium",
+                    keyConcepts:
+                        "Min/Max heap, Heapify, Top-K problems, Median finding, Merge K sorted",
+                    dependencies: "Arrays, Complete binary trees, Comparisons",
+                    interviewFreq: "High",
+                    timeToMaster: "1-2 weeks",
+                },
+                {
+                    priority: 22,
+                    topic: "Advanced Binary Search",
+                    category: "Searching",
+                    difficulty: "medium",
+                    keyConcepts:
+                        "Binary search on answer, Rotated arrays, Peak finding, Ternary search",
+                    dependencies:
+                        "Basic binary search, Sorted arrays, Mathematical analysis",
+                    interviewFreq: "Very High",
+                    timeToMaster: "2-3 weeks",
+                },
+                {
+                    priority: 23,
+                    topic: "Greedy Algorithms",
+                    category: "Greedy",
+                    difficulty: "medium",
+                    keyConcepts:
+                        "Activity selection, Interval scheduling, Huffman coding, Fractional knapsack",
+                    dependencies:
+                        "Sorting, Problem-solving patterns, Optimization concepts",
+                    interviewFreq: "High",
+                    timeToMaster: "2-3 weeks",
+                },
+                {
+                    priority: 24,
+                    topic: "Advanced Bit Manipulation",
+                    category: "Bit Manipulation",
+                    difficulty: "medium",
+                    keyConcepts:
+                        "Bitmasking, Subset generation, XOR properties, Bit DP",
+                    dependencies:
+                        "Basic bit operations, Binary representation, Mathematical concepts",
+                    interviewFreq: "Medium",
+                    timeToMaster: "1-2 weeks",
+                },
+                {
+                    priority: 25,
+                    topic: "Monotonic Stack/Queue",
+                    category: "Stacks & Queues",
+                    difficulty: "medium",
+                    keyConcepts:
+                        "Next greater element, Sliding window maximum, Histogram problems",
+                    dependencies: "Stacks, Queues, Array traversal",
+                    interviewFreq: "High",
+                    timeToMaster: "1-2 weeks",
+                },
+
+                // Easy Level
+                {
+                    priority: 26,
+                    topic: "Binary Trees & BST",
+                    category: "Trees",
+                    difficulty: "easy",
+                    keyConcepts:
+                        "Tree traversals, Insert/Delete/Search, Balanced trees, Tree properties",
+                    dependencies:
+                        "Recursion, Pointers/References, Basic tree concepts",
+                    interviewFreq: "Very High",
+                    timeToMaster: "2-3 weeks",
+                },
+                {
+                    priority: 27,
+                    topic: "Basic Graph Representation",
+                    category: "Graphs",
+                    difficulty: "easy",
+                    keyConcepts:
+                        "Adjacency matrix, Adjacency list, Graph terminology, Basic operations",
+                    dependencies: "Arrays, Lists, Basic data structures",
+                    interviewFreq: "High",
+                    timeToMaster: "1 week",
+                },
+                {
+                    priority: 28,
+                    topic: "Hashing & Hash Tables",
+                    category: "Hashing",
+                    difficulty: "easy",
+                    keyConcepts:
+                        "HashMap, HashSet, Collision handling, Frequency counting, Anagrams",
+                    dependencies:
+                        "Arrays, Basic data structures, Key-value concepts",
+                    interviewFreq: "Very High",
+                    timeToMaster: "1-2 weeks",
+                },
+                {
+                    priority: 29,
+                    topic: "Basic Backtracking",
+                    category: "Recursion & Backtracking",
+                    difficulty: "easy",
+                    keyConcepts:
+                        "Permutations, Combinations, Subset generation, Decision trees",
+                    dependencies: "Recursion, Arrays, Basic problem-solving",
+                    interviewFreq: "High",
+                    timeToMaster: "2-3 weeks",
+                },
+                {
+                    priority: 30,
+                    topic: "Stacks & Queues",
+                    category: "Data Structures",
+                    difficulty: "easy",
+                    keyConcepts:
+                        "LIFO/FIFO, Expression evaluation, Parentheses matching, Circular queue",
+                    dependencies: "Arrays, Linked lists, Basic operations",
+                    interviewFreq: "High",
+                    timeToMaster: "1-2 weeks",
+                },
+                {
+                    priority: 31,
+                    topic: "Sorting Algorithms",
+                    category: "Sorting",
+                    difficulty: "easy",
+                    keyConcepts:
+                        "Bubble, Selection, Insertion, Merge, Quick, Counting, Radix sort",
+                    dependencies:
+                        "Arrays, Comparisons, Recursion (for advanced sorts)",
+                    interviewFreq: "High",
+                    timeToMaster: "2-3 weeks",
+                },
+                {
+                    priority: 32,
+                    topic: "Basic Binary Search",
+                    category: "Searching",
+                    difficulty: "easy",
+                    keyConcepts:
+                        "Search in sorted array, First/Last occurrence, Insert position",
+                    dependencies:
+                        "Sorted arrays, Mathematical analysis, Loop invariants",
+                    interviewFreq: "Very High",
+                    timeToMaster: "1-2 weeks",
+                },
+                {
+                    priority: 33,
+                    topic: "Linked Lists",
+                    category: "Data Structures",
+                    difficulty: "easy",
+                    keyConcepts:
+                        "Singly/Doubly linked lists, Insert/Delete, Reverse, Cycle detection",
+                    dependencies:
+                        "Pointers/References, Memory concepts, Basic operations",
+                    interviewFreq: "Very High",
+                    timeToMaster: "2-3 weeks",
+                },
+                {
+                    priority: 34,
+                    topic: "Basic Recursion",
+                    category: "Recursion",
+                    difficulty: "easy",
+                    keyConcepts:
+                        "Base case, Recursive calls, Stack frames, Tree/Graph recursion",
+                    dependencies:
+                        "Functions, Stack concept, Mathematical induction",
+                    interviewFreq: "High",
+                    timeToMaster: "1-2 weeks",
+                },
+                {
+                    priority: 35,
+                    topic: "Basic Bit Manipulation",
+                    category: "Bit Manipulation",
+                    difficulty: "easy",
+                    keyConcepts:
+                        "AND, OR, XOR, Bit shifts, Count set bits, Power of two",
+                    dependencies:
+                        "Binary representation, Basic mathematical operations",
+                    interviewFreq: "Medium",
+                    timeToMaster: "1 week",
+                },
+                {
+                    priority: 36,
+                    topic: "Advanced Array Techniques",
+                    category: "Arrays",
+                    difficulty: "easy",
+                    keyConcepts:
+                        "Sliding window, Two pointers, Kadane's algorithm, Prefix sums",
+                    dependencies:
+                        "Basic arrays, Mathematical concepts, Pattern recognition",
+                    interviewFreq: "Very High",
+                    timeToMaster: "2-3 weeks",
+                },
+                {
+                    priority: 37,
+                    topic: "String Manipulation",
+                    category: "Strings",
+                    difficulty: "easy",
+                    keyConcepts:
+                        "Traversal, Reversal, Palindromes, Character frequency, Anagrams",
+                    dependencies:
+                        "Arrays, Character encoding, Basic string operations",
+                    interviewFreq: "High",
+                    timeToMaster: "1-2 weeks",
+                },
+                {
+                    priority: 38,
+                    topic: "Basic Arrays",
+                    category: "Arrays",
+                    difficulty: "easy",
+                    keyConcepts:
+                        "Traversal, Searching, Insertion, Deletion, Rotation, Sorting",
+                    dependencies: "None - Fundamental concept",
+                    interviewFreq: "Very High",
+                    timeToMaster: "1-2 weeks",
+                },
+            ];
+
+            let filteredData = [...roadmapData];
+
+            function renderTable() {
+                const tableBody = document.getElementById("tableBody");
+                tableBody.innerHTML = "";
+
+                filteredData.forEach((item) => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                    <td><span class="priority priority-${Math.ceil(
+                        item.priority / 10
+                    )}">${item.priority}</span></td>
+                    <td><strong>${item.topic}</strong></td>
+                    <td class="category">${item.category}</td>
+                    <td><span class="difficulty ${
+                        item.difficulty
+                    }">${item.difficulty.toUpperCase()}</span></td>
+                    <td class="key-concepts">${item.keyConcepts}</td>
+                    <td class="dependencies">${item.dependencies}</td>
+                    <td>${item.interviewFreq}</td>
+                    <td>${item.timeToMaster}</td>
+                `;
+                    tableBody.appendChild(row);
+                });
+            }
+
+            function filterByDifficulty(difficulty) {
+                // Update button states
+                document
+                    .querySelectorAll(".filter-btn")
+                    .forEach((btn) => btn.classList.remove("active"));
+                event.target.classList.add("active");
+
+                if (difficulty === "all") {
+                    filteredData = [...roadmapData];
+                } else {
+                    filteredData = roadmapData.filter(
+                        (item) => item.difficulty === difficulty
+                    );
+                }
+                renderTable();
+            }
+
+            function setupSearch() {
+                const searchInput = document.getElementById("searchInput");
+                searchInput.addEventListener("input", function () {
+                    const searchTerm = this.value.toLowerCase();
+                    filteredData = roadmapData.filter(
+                        (item) =>
+                            item.topic.toLowerCase().includes(searchTerm) ||
+                            item.category.toLowerCase().includes(searchTerm) ||
+                            item.keyConcepts
+                                .toLowerCase()
+                                .includes(searchTerm) ||
+                            item.dependencies.toLowerCase().includes(searchTerm)
+                    );
+                    renderTable();
+                });
+            }
+
+            function downloadCSV() {
+                const csvContent = [
+                    [
+                        "Priority",
+                        "Topic",
+                        "Category",
+                        "Difficulty",
+                        "Key Concepts",
+                        "Dependencies",
+                        "Interview Frequency",
+                        "Time to Master",
+                    ],
+                    ...roadmapData.map((item) => [
+                        item.priority,
+                        item.topic,
+                        item.category,
+                        item.difficulty,
+                        item.keyConcepts,
+                        item.dependencies,
+                        item.interviewFreq,
+                        item.timeToMaster,
+                    ]),
+                ]
+                    .map((row) => row.join(","))
+                    .join("\n");
+
+                const blob = new Blob([csvContent], { type: "text/csv" });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "dsa_roadmap_hard_to_easy.csv";
+                a.click();
+                window.URL.revokeObjectURL(url);
+            }
+
+            // Initialize
+            renderTable();
+            setupSearch();
+        </script>
+    </body>
+</html>
