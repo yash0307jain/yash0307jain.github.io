@@ -1150,6 +1150,21 @@
                 renderTable();
             }
 
+            function priorityNumber(item) {
+                if (item.difficulty == "expert") {
+                    return 1;
+                }
+                if (item.difficulty == "hard") {
+                    return 2;
+                }
+                if (item.difficulty == "medium") {
+                    return 3;
+                }
+                if (item.difficulty == "easy") {
+                    return 4;
+                }
+            }
+
             function renderTable() {
                 const tableBody = document.getElementById("tableBody");
                 tableBody.innerHTML = "";
@@ -1157,8 +1172,8 @@
                 filteredData.forEach((item) => {
                     const row = document.createElement("tr");
                     row.innerHTML = `
-                    <td><span class="priority priority-${Math.ceil(
-                        item.priority / 10
+                    <td><span class="priority priority-${priorityNumber(
+                        item
                     )}">${item.priority}</span></td>
                     <td><strong>${item.topic}</strong></td>
                     <td class="category">${item.category}</td>
